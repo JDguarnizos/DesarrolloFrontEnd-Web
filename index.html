@@ -1,0 +1,82 @@
+<!DOCTYPE html> <!-- Le dice al navegador que use el estándar HTML5 -->
+<html lang="es" data-tema="oscuro"> <!-- Nodo raíz del DOM; data-tema es el interruptor que usa el CSS/JS del tema -->
+
+<head> <!-- Zona de metadatos: no se ve en pantalla, configura el documento -->
+    <meta charset="UTF-8" /> <!-- Define la codificación de caracteres (para que tildes/ñ se vean bien) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Hace que se vea bien en celulares -->
+    <title>Laboratorio JS — De cero al DOM</title> <!-- Texto que aparece en la pestaña del navegador -->
+
+    <link rel="stylesheet" href="styles.css" /> <!-- Enlaza la hoja de estilos (arma el CSSOM) -->
+</head> <!-- Fin de la zona de metadatos -->
+
+<body> <!-- Todo lo que sí se ve en pantalla va dentro de aquí -->
+    <header class="barra-superior"> <!-- Barra superior fija con el título y el botón de tema -->
+        <div class="barra-superior__marca"> <!-- Agrupa el "logo" y los textos del título -->
+            <span class="barra-superior__indice">JS</span> <!-- Insignia decorativa con las siglas "JS" -->
+            <div> <!-- Agrupa el título y el subtítulo -->
+                <h1 class="barra-superior__titulo">Laboratorio JS</h1> <!-- Título principal de la página -->
+                <p class="barra-superior__subtitulo">De cero al DOM — 10 ejercicios progresivos</p>
+                <!-- Subtítulo explicativo -->
+            </div> <!-- Cierra el agrupador de título/subtítulo -->
+        </div> <!-- Cierra barra-superior__marca -->
+
+        <!-- Ejercicio 03: el botón ya existe, el comportamiento lo agrega el JS -->
+        <button id="interruptor-tema" class="interruptor-tema" type="button" aria-pressed="false">
+            <!-- Botón que el JS engancha por su id -->
+            <span class="interruptor-tema__punto" aria-hidden="true"></span>
+            <!-- Puntito decorativo, oculto para lectores de pantalla -->
+            <span id="interruptor-tema-etiqueta">Modo oscuro</span>
+            <!-- Texto que el JS cambia entre "Modo oscuro"/"Modo claro" -->
+        </button> <!-- Cierra el botón de tema -->
+    </header> <!-- Cierra la barra superior -->
+    <!-- Índice / navegación lateral -->
+    <nav class="barra-lateral" aria-label="Índice de ejercicios"> <!-- Barra lateral de navegación -->
+        <ol class="barra-lateral__lista"> <!-- Lista ordenada: refleja el orden real de dificultad -->
+            <li><a href="#ej-00">00 · Contador de clics</a></li> <!-- Enlace de salto a la sección del ejercicio 00 -->
+            <li><a href="#ej-01">01 · Cronómetro</a></li> <!-- Enlace al ejercicio 01 -->
+            <li><a href="#ej-02">02 · Calculadora de propina</a></li> <!-- Enlace al ejercicio 02 -->
+            <li><a href="#ej-03">03 · Modo claro / oscuro</a></li> <!-- Enlace al ejercicio 03 -->
+            <li><a href="#ej-04">04 · Lista de tareas</a></li> <!-- Enlace al ejercicio 04 -->
+            <li><a href="#ej-05">05 · Catálogo (arrays)</a></li> <!-- Enlace al ejercicio 05 -->
+            <li><a href="#ej-06">06 · Formulario validado</a></li> <!-- Enlace al ejercicio 06 -->
+            <li><a href="#ej-07">07 · Buscador / filtro</a></li> <!-- Enlace al ejercicio 07 -->
+            <li><a href="#ej-08">08 · Carrito de compras</a></li> <!-- Enlace al ejercicio 08 -->
+            <li><a href="#ej-09">09 · Estados de carga</a></li> <!-- Enlace al ejercicio 09 -->
+        </ol> <!-- Cierra la lista del índice -->
+    </nav> <!-- Cierra la barra lateral -->
+
+    <main class="contenido"> <!-- Columna principal: aquí viven los 10 ejercicios -->
+
+        <section id="ej-00" class="ejercicio" data-ejercicio="contador">
+            <header class="ejercicio__encabezado">
+                <span class="ejercicio__ejercicionum000">
+                    <div>
+                        <h2>Contador de clicks con Límite</h2>
+                        <p class="ejercicio_objetivo"> Objetivo: seleccionar nodos, escuchar eventos y actualizar el
+                            texto en pantalla</p>
+                    </div>
+                </span>
+            </header>
+
+            <div class="ejercicio__cuerpo">
+
+                <!-- Nodo que el JS busca con [data-rol="contador-valor"] para pintar el número -->
+                <p class="contador__pantalla" data-rol="contador-valor">0</p>
+
+                <div class="fila-botones">
+                    <button class="boton" type="button" data-rol="contador-decrementar">-1</button>
+                    <button class="boton boton--primario" type="button" data-rol="contador-incrementar">+1</button>
+                    <button class="boton boton--fantasma" type="button" data-rol="contador-reiniciar">Reiniciar</button>
+                </div>
+
+                <p class="pista" data-rol="contador-mensaje-limite"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

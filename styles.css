@@ -1,0 +1,415 @@
+/* =====================================================================
+   VARIABLES DE TEMA (esto es el "CSSOM" que el ejercicio 03 va a tocar)
+   El JS solo cambia el atributo data-tema en <html>; el navegador
+   recalcula estas variables solo, sin que el JS toque colores a mano.
+   ===================================================================== */
+:root,
+[data-tema="oscuro"] {
+  --fondo: #12141c;
+  --fondo-elevado: #1b1e29;
+  --fondo-elevado-2: #232838;
+  --borde: #2a2e3b;
+  --texto: #e7e9f0;
+  --texto-atenuado: #8a90a6;
+  --acento: #5eead4;
+  --acento-tinta: #06201c;
+  --acento-2: #f5b942;
+  --peligro: #f5567a;
+  --exito: #6ee7a8;
+  --sombra: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+[data-tema="claro"] {
+  --fondo: #f6f5f1;
+  --fondo-elevado: #ffffff;
+  --fondo-elevado-2: #eeece4;
+  --borde: #ddd9cf;
+  --texto: #1b1e27;
+  --texto-atenuado: #6b7280;
+  --acento: #0f8b8d;
+  --acento-tinta: #eafffb;
+  --acento-2: #c97c1b;
+  --peligro: #c4405a;
+  --exito: #1e8e5a;
+  --sombra: 0 12px 30px rgba(20, 20, 20, 0.08);
+}
+
+/* ===================== RESET BÁSICO ===================== */
+* { box-sizing: border-box; }
+html { color-scheme: dark; } /* "dark" es un valor propio de la propiedad CSS color-scheme: debe quedar en inglés */
+[data-tema="claro"] { color-scheme: light; } /* ídem: "light" es el valor real de la propiedad, no un nombre nuestro */
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, .monoespaciado {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+/* ===================== ENCABEZADO SUPERIOR ===================== */
+.barra-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.75rem;
+  border-bottom: 1px solid var(--borde);
+  background: var(--fondo-elevado);
+}
+
+.barra-superior__marca {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.barra-superior__indice {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 6px;
+  background: var(--acento);
+  color: var(--acento-tinta);
+}
+
+.barra-superior__titulo {
+  font-size: 1.05rem;
+}
+
+.barra-superior__subtitulo {
+  margin: 0.1rem 0 0;
+  font-size: 0.82rem;
+  color: var(--texto-atenuado);
+}
+
+.interruptor-tema {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--borde);
+  background: var(--fondo-elevado-2);
+  color: var(--texto);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.interruptor-tema__punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--acento);
+  display: inline-block;
+}
+
+/* ===================== ESTRUCTURA GENERAL ===================== */
+.estructura {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: calc(100vh - 130px);
+}
+
+.barra-lateral {
+  border-right: 1px solid var(--borde);
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: calc(100vh - 90px);
+  overflow-y: auto;
+}
+
+.barra-lateral__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.barra-lateral__lista a {
+  display: block;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  color: var(--texto-atenuado);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.barra-lateral__lista a:hover {
+  background: var(--fondo-elevado-2);
+  color: var(--texto);
+}
+
+.contenido {
+  padding: 2rem 2.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 780px;
+}
+
+/* ===================== TARJETA DE EJERCICIO ===================== */
+.ejercicio {
+  background: var(--fondo-elevado);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 1.5rem 1.6rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.ejercicio__encabezado {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  margin-bottom: 1.1rem;
+}
+
+.ejercicio__numero {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--acento);
+  font-size: 1.1rem;
+}
+
+.ejercicio__encabezado h2 {
+  font-size: 1.05rem;
+}
+
+.ejercicio__objetivo {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--texto-atenuado);
+}
+
+.ejercicio__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+/* ===================== COMPONENTES REUTILIZABLES ===================== */
+.boton {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 7px;
+  border: 1px solid var(--borde);
+  background: var(--fondo-elevado-2);
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.boton:hover { border-color: var(--acento); }
+
+.boton--primario {
+  background: var(--acento);
+  color: var(--acento-tinta);
+  border-color: var(--acento);
+  font-weight: 600;
+}
+
+.boton--fantasma {
+  background: transparent;
+}
+
+.boton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.fila-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.campo label {
+  font-size: 0.8rem;
+  color: var(--texto-atenuado);
+}
+
+input, select {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 7px;
+  border: 1px solid var(--borde);
+  background: var(--fondo);
+  color: var(--texto);
+}
+
+input:focus, select:focus, .boton:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 1px;
+}
+
+.campo__error {
+  min-height: 1em;
+  font-size: 0.78rem;
+  color: var(--peligro);
+}
+
+.pista {
+  font-size: 0.82rem;
+  color: var(--texto-atenuado);
+}
+
+.contador__pantalla {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.cuadricula-resultados {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.cuadricula-resultados dt {
+  font-size: 0.75rem;
+  color: var(--texto-atenuado);
+}
+
+.cuadricula-resultados dd {
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+}
+
+.formulario-en-linea {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.formulario-en-linea input { flex: 1; }
+
+.lista-tareas, .lista-simple {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lista-tareas li, .lista-simple li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--borde);
+  border-radius: 7px;
+  background: var(--fondo-elevado-2);
+  font-size: 0.9rem;
+}
+
+.lista-tareas li.esta-hecha span {
+  text-decoration: line-through;
+  color: var(--texto-atenuado);
+}
+
+.cuadricula-catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.85rem;
+}
+
+.cuadricula-catalogo .tarjeta {
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 0.9rem;
+  background: var(--fondo-elevado-2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tarjeta__precio {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--acento);
+}
+
+.tarjeta__stock--agotado {
+  color: var(--peligro);
+  font-size: 0.78rem;
+}
+
+.formulario-apilado {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 380px;
+}
+
+.estructura-carrito {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.etiqueta-seccion {
+  font-size: 0.85rem;
+  color: var(--texto-atenuado);
+  margin-bottom: 0.6rem;
+}
+
+.caja-asincrona {
+  border: 1px dashed var(--borde);
+  border-radius: 8px;
+  padding: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.caja-asincrona[data-estado="cargando"] { border-color: var(--acento-2); color: var(--acento-2); }
+.caja-asincrona[data-estado="exito"]    { border-color: var(--exito); color: var(--exito); }
+.caja-asincrona[data-estado="error"]    { border-color: var(--peligro); color: var(--peligro); }
+
+.pie-pagina {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--texto-atenuado);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--borde);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 760px) {
+  .estructura { grid-template-columns: 1fr; }
+  .barra-lateral {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--borde);
+  }
+  .estructura-carrito { grid-template-columns: 1fr; }
+  .cuadricula-resultados { grid-template-columns: 1fr; }
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
